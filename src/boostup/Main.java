@@ -1,5 +1,6 @@
 package boostup;
 
+import datacollector.TextIterator;
 import tacklefile.Kind;
 
 import javax.swing.*;
@@ -10,6 +11,7 @@ import java.awt.event.ItemListener;
 public class Main extends JFrame {
     private final JLabel dataLabel = new JLabel("temporary data");
     private final JTextArea dataArea = new JTextArea();
+    private final JScrollPane dataPane = new JScrollPane(dataArea);
     private final JLabel pythonLabel = new JLabel(".py");
     private final JTextArea pythonArea = new JTextArea();
     private final JScrollPane pythonPane = new JScrollPane(pythonArea);
@@ -25,6 +27,10 @@ public class Main extends JFrame {
     private final JComboBox<String> drawComboBox = new JComboBox<>(new MyComboBox("Line",new String[]{"Line","Column","Pie","Histogram"}));
     private final JLabel drawPreview = new JLabel("Line Chart",JLabel.CENTER);
     private int selectedKind = Kind.Line;
+
+    private final JButton compileButton = new JButton("compile");
+    private final JButton debug = new JButton("debug");
+
     private final int width = 1400;
     private final int height = 800;
     private final int dataAreaWidth = 400;
@@ -38,8 +44,13 @@ public class Main extends JFrame {
     private final int drawComboBoxWidth = 100;
     private final int drawLabelHeight = 40;
     private final int drawPreViewWidth = 80;
-    private final int drawStartX = dataAreaWidth + drawLabelWidth + drawComboBoxWidth;
-    private final int drawStartY = dataLabelHeight + splitLabelHeight;
+    private final int drawStartX = dataAreaWidth + drawLabelWidth + drawComboBoxWidth;//620
+    private final int drawStartY = dataLabelHeight + splitLabelHeight;//110
+
+    private final int debugX = 500;
+    private final int debugY = 260;
+    private final int compileX = 500;
+    private final int compileY = 300;
 
     public Main(){
         super();
@@ -52,11 +63,13 @@ public class Main extends JFrame {
         rootPane.setBackground(Color.pink);
         setContentPane(rootPane);
         dataLabel.setBounds(0,0,100,dataLabelHeight);
-        dataArea.setBounds(0,30,dataAreaWidth,600);
+        dataPane.setBounds(0,30,dataAreaWidth,600);
+        dataArea.setFont(new Font("微软雅黑",Font.PLAIN,18));
         pythonLabel.setBounds(700,0,100,dataLabelHeight);
         pythonPane.setBounds(700,30,700,600);
+        pythonArea.setFont(new Font("微软雅黑",Font.PLAIN,18));
         getContentPane().add(dataLabel);
-        getContentPane().add(dataArea);
+        getContentPane().add(dataPane);
         getContentPane().add(pythonLabel);
         getContentPane().add(pythonPane);
 
@@ -76,6 +89,36 @@ public class Main extends JFrame {
         getContentPane().add(drawPreview);
         addItemListenerForSelectChartComboBox();
 
+        debug.setBounds(debugX,debugY,100,40);
+        compileButton.setBounds(compileX,compileY,100,40);
+        getContentPane().add(debug);
+        getContentPane().add(compileButton);
+        debug.addActionListener(e->{
+            dataAreaDataRevolver();
+        });
+
+    }
+    private void dataAreaDataRevolver(){
+        StringBuilder s = new StringBuilder().append(dataArea.getText());
+//        System.out.println(s);
+        switch(selectedKind){
+            case Kind.Line->{
+                System.out.println(new TextIterator(s).getLine().split(this.splitValue)[0]);
+                System.out.println(convertToDouble(new TextIterator(s).getLine().split(this.splitValue)[0]));
+                System.out.println(new TextIterator(s).getLine().split(this.splitValue)[1]);
+                System.out.println(convertToDouble(new TextIterator(s).getLine().split(this.splitValue)[1]));
+            }
+            case Kind.Column->{
+
+            }
+            case Kind.Pie->{
+
+            }
+            case Kind.Histogram->{
+
+            }
+        }
+//        System.out.println(s);
     }
     private void addItemListenerForSelectSplitComboBox(){
         this.splitComboBox.addItemListener(new ItemListener(){
@@ -175,6 +218,35 @@ public class Main extends JFrame {
         @Override
         public String getElementAt(int index) {
             return items[index];
+        }
+    }
+    public int convertToInt(String number) {
+        assert(number.split("\\.").length<2);
+        number = number.trim();
+        int res = 0;
+        for(char c:number.toCharArray()){
+            res *= 10;
+            res = res + (c-'0');
+        }
+        return res;
+    }
+    public double convertToDouble(String number){
+        assert(number.split("\\.").length<3);
+        double res = 0;
+        if(number.split("\\.").length==1){
+            return convertToInt(number);
+        }else{
+            int f = number.split("\\.")[0].length();
+            for(int i = 0;i<f;i++){
+                res *= 10;
+                res += (number.charAt(i)-'0');
+            }
+            int power = 1;
+            for(int j = f+1;j<number.length();j++){
+                res += Math.pow(0.1,power) * (number.charAt(j)-'0');
+                power ++;
+            }
+            return res;
         }
     }
 }

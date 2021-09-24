@@ -3,8 +3,6 @@ package tacklefile;
 import java.io.*;
 
 public class PythonFileWriter {
-    public static int counter = 0;
-    public static String default_counter_file = "counter.txt";
     public StringBuilder bufferedData = new StringBuilder();
     public PythonFileWriter(){
 
@@ -48,8 +46,6 @@ public class PythonFileWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        counter++;
-        WriteCounter();
         System.out.println("finished");
     }
     public <T> StringBuilder lineGraphics(StringBuilder bufferedData,T[][] array){
@@ -68,60 +64,12 @@ public class PythonFileWriter {
         bufferedData.append("plt.show()\nprint(12)\n");
         return bufferedData;
     }
-    public void WriteCounter(){
-        File file = new File(default_counter_file);
-        try{
-            FileWriter fr = new FileWriter(file);
-            BufferedWriter br = new BufferedWriter(fr);
-            br.write(Integer.toString(counter));
-            br.close();
-            fr.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void loadCounter(){
-        File file = new File(default_counter_file);
-        if(!file.exists()){
-            try{
-                if (!new File("D://GraphicsWithPython").exists()){
-                    new File("D://GraphicsWithPython").mkdirs();
-                }
-                file.createNewFile();
-                FileWriter fr = new FileWriter(file);
-                BufferedWriter br = new BufferedWriter(fr);
-                br.write("1");
-                br.close();
-                fr.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }else{
-            try{
-                FileReader fr = new FileReader(file);
-                BufferedReader br = new BufferedReader(fr);
-                String count = br.readLine();
-                counter = convertToInt(count);
-                br.close();
-                fr.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
-    public static int convertToInt(String count) {
-        count = count.trim();
-        int res = 0;
-        for(char c:count.toCharArray()){
-            res *= 10;
-            res = res + (c-'0');
-        }
-        return res;
-    }
     public File generate_python_file(){
-        loadCounter();
-        File file = new File("D://GraphicsWithPython//"+"py"+counter+".py");
+        if (!new File("D://GraphicsWithPython").exists()){
+            new File("D://GraphicsWithPython").mkdirs();
+        }
+        File file = new File("D://GraphicsWithPython//"+"Graphics.py");
         if(file.exists()){
             file.delete();
         }
