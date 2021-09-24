@@ -1,28 +1,24 @@
 package tacklefile;
 
-import java.awt.*;
 import java.io.*;
-import java.util.Scanner;
 
 public class PythonFileWriter {
     public static int counter = 0;
-    public static String default_counter_file = "D://GraphicsWithPython//counter.txt";
-    public static String julia_file = "D://GraphicsWithPython//juliaBoost.jl";
+    public static String default_counter_file = "counter.txt";
+    public StringBuilder bufferedData = new StringBuilder();
     public PythonFileWriter(){
 
     }
-    public PythonFileWriter(int[][] array, int kind){
-        StringBuilder bufferedData = new StringBuilder();
+    public <T> PythonFileWriter(T[][] array, int kind){
         switch(kind){
             case Kind.Line->{
                 bufferedData = lineGraphics(bufferedData,array);
             }
         }
-        File file = WriteCompliedCode(bufferedData);
-        run(file);
-        counter++;
-        WriteCounter();
-        System.out.println("finished");
+
+    }
+    public File getFile() {
+        return WriteCompliedCode(bufferedData);
     }
     public File WriteCompliedCode(StringBuilder bufferedData){
         File file = generate_python_file();
@@ -37,48 +33,39 @@ public class PythonFileWriter {
         }
         return file;
     }
-    public void run(File file){
-        String s =
-                "cmd = `C://ProgramData//python//python.exe -u \""
-                        + convertPath(file.getAbsolutePath())
-                        + "\"`\nrun(cmd)\n";
+    public void run(){
         try{
-            File file2 = new File(julia_file);
-            if(!file2.exists()){
-                file2.createNewFile();
+            Process pc = Runtime.getRuntime().exec(new String[]{"cmd","/c","python "+getFile().getAbsolutePath()},
+                    null,new File("D://GraphicsWithPython//"));
+            InputStreamReader isr = new InputStreamReader(pc.getInputStream());
+            BufferedReader bf = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String s;
+            while((s=bf.readLine())!=null){
+                sb.append(s).append("\n");
             }
-            FileWriter writer2 = new FileWriter(file2);
-            BufferedWriter bw2 = new BufferedWriter(writer2);
-            bw2.write(s);
-            bw2.close();
-            writer2.close();
-            Desktop dek = Desktop.getDesktop();
-            if(dek.isSupported(Desktop.Action.OPEN)){
-                try {
-                    dek.open(new File(julia_file));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-
+            System.out.println(sb);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        counter++;
+        WriteCounter();
+        System.out.println("finished");
     }
-    public StringBuilder lineGraphics(StringBuilder bufferedData,int[][] array){
+    public <T> StringBuilder lineGraphics(StringBuilder bufferedData,T[][] array){
         bufferedData.append("import matplotlib.pyplot as plt\n");
         bufferedData.append("x = [");
-        for(int[] x:array){
+        for(T [] x:array){
             bufferedData.append(x[0]+",");
         }
         bufferedData.append("]\n");
         bufferedData.append("y = [");
-        for(int[] y:array){
+        for(T [] y:array){
             bufferedData.append(y[1]+",");
         }
         bufferedData.append("]\n");
         bufferedData.append("plt.plot(x,y)\n");
-        bufferedData.append("plt.show()\n");
+        bufferedData.append("plt.show()\nprint(12)\n");
         return bufferedData;
     }
     public void WriteCounter(){

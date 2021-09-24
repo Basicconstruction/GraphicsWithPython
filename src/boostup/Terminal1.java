@@ -7,15 +7,15 @@ import java.io.InputStreamReader;
 
 public class Terminal1 {
     public static void main(String[] args) throws IOException {
-//        Process process = Runtime.getRuntime()
-//                .exec("cmd /c dir", null, new File("D://"));
-//        printResults(process);
-        Process process2 = Runtime.getRuntime().exec(
-                new String[]{"cmd", "/c", "python D://GraphicsWithPython//py4.py"},
-                null,
-                new File("H://"));
-
-        printResults(process2);
+        Process process = Runtime.getRuntime()
+                .exec("cmd /c dir", null, new File("D://"));
+        printResults(process);
+//        Process process2 = Runtime.getRuntime().exec(
+//                new String[]{"cmd", "/c", "python D://GraphicsWithPython//py4.py"},
+//                null,
+//                new File("H://"));
+//
+//        printResults(process2);
 //        ProcessBuilder processBuilder = new ProcessBuilder();
 //        processBuilder.command("cmd", "/c", "python D://GraphicsWithPython//py4.py");
 //
