@@ -2,6 +2,9 @@ package boostup;
 
 import datacollector.TextIterator;
 import tacklefile.Kind;
+import tacklefile.LineDataRevolver;
+import tacklefile.Mode;
+import tacklefile.PythonFileWriter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +21,13 @@ public class Main extends JFrame {
     private final JPanel rootPane = new JPanel(null);
 
     private final JLabel splitLabel = new JLabel("select split value",JLabel.CENTER);
-    private final JComboBox<String> splitComboBox = new JComboBox<>(new MyComboBox("space",new String[]{"space","comma"}));
+    private final JComboBox<String> splitComboBox = new JComboBox<>(new MyComboBox("space", new String[]{"space", "comma"}));
     private final JLabel splitPreview = new JLabel("\" \"",JLabel.CENTER);
     private String splitValue = " ";
 
     private final JLabel drawLabel = new JLabel("Select drawing type",JLabel.CENTER);
     /** 直方图，饼图，折线图，柱形图  Histogram, Pie Chart, Line Chart, Column Chart*/
-    private final JComboBox<String> drawComboBox = new JComboBox<>(new MyComboBox("Line",new String[]{"Line","Column","Pie","Histogram"}));
+    private final JComboBox<String> drawComboBox = new JComboBox<>(new MyComboBox("Line", new String[]{"Line", "Column", "Pie", "Histogram"}));
     private final JLabel drawPreview = new JLabel("Line Chart",JLabel.CENTER);
     private int selectedKind = Kind.Line;
 
@@ -94,31 +97,53 @@ public class Main extends JFrame {
         getContentPane().add(debug);
         getContentPane().add(compileButton);
         debug.addActionListener(e->{
-            dataAreaDataRevolver();
+            dataAreaDataRevolver(Mode.debug);
+        });
+        compileButton.addActionListener(e->{
+            dataAreaDataRevolver(Mode.compile);
         });
 
     }
-    private void dataAreaDataRevolver(){
-        StringBuilder s = new StringBuilder().append(dataArea.getText());
-//        System.out.println(s);
-        switch(selectedKind){
-            case Kind.Line->{
-                System.out.println(new TextIterator(s).getLine().split(this.splitValue)[0]);
-                System.out.println(convertToDouble(new TextIterator(s).getLine().split(this.splitValue)[0]));
-                System.out.println(new TextIterator(s).getLine().split(this.splitValue)[1]);
-                System.out.println(convertToDouble(new TextIterator(s).getLine().split(this.splitValue)[1]));
-            }
-            case Kind.Column->{
+    private void dataAreaDataRevolver(int mode){
+        if(!dataArea.getText().equals("")){
+            StringBuilder s = new StringBuilder().append(dataArea.getText());
+            switch(selectedKind){
+                case Kind.Line->{
+                    LineDataRevolver ldr = new LineDataRevolver(s,this.splitValue);
+                    double[][] transferred = ldr.getData();
+                    PythonFileWriter pfw = new PythonFileWriter(transferred,this.selectedKind);
+                    pythonArea.setText("");
+                    Thread thread = new Thread(new Runnable(){
 
-            }
-            case Kind.Pie->{
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(500);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            pythonArea.setText(pfw.bufferedData.toString());
+                        }
+                    });
+                    thread.start();
+                    if(mode==Mode.debug){
+                        pfw.run();
+                    }
+                }
+                case Kind.Column->{
 
-            }
-            case Kind.Histogram->{
+                }
+                case Kind.Pie->{
 
+                }
+                case Kind.Histogram->{
+
+                }
             }
+        }else{
+            System.out.println("you have not type in any char.");
         }
-//        System.out.println(s);
+
     }
     private void addItemListenerForSelectSplitComboBox(){
         this.splitComboBox.addItemListener(new ItemListener(){
@@ -193,7 +218,7 @@ public class Main extends JFrame {
     public void printContentPaneSize(){
         System.out.println(getContentPane().getWidth()+"\n"+getContentPane().getHeight()+"\n");
     }
-    class MyComboBox extends AbstractListModel<String> implements ComboBoxModel<String>{
+    static class MyComboBox extends AbstractListModel<String> implements ComboBoxModel<String>{
         String selectedItem;
         String[] items;
         public MyComboBox(String selectedItem,String[] items){
@@ -231,6 +256,7 @@ public class Main extends JFrame {
         return res;
     }
     public double convertToDouble(String number){
+        //Double.parseDouble("129.89")
         assert(number.split("\\.").length<3);
         double res = 0;
         if(number.split("\\.").length==1){

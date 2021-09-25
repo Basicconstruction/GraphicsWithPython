@@ -7,14 +7,15 @@ public class PythonFileWriter {
     public PythonFileWriter(){
 
     }
-    public <T> PythonFileWriter(T[][] array, int kind){
+    public PythonFileWriter(double[][] array, int kind){
         switch(kind){
             case Kind.Line->{
-                bufferedData = lineGraphics(bufferedData,array);
+                bufferedData = lineGraphics(this.bufferedData,array);
             }
         }
 
     }
+
     public File getFile() {
         return WriteCompliedCode(bufferedData);
     }
@@ -48,15 +49,15 @@ public class PythonFileWriter {
         }
         System.out.println("finished");
     }
-    public <T> StringBuilder lineGraphics(StringBuilder bufferedData,T[][] array){
+    public StringBuilder lineGraphics(StringBuilder bufferedData,double[][] array){
         bufferedData.append("import matplotlib.pyplot as plt\n");
         bufferedData.append("x = [");
-        for(T [] x:array){
+        for(double [] x:array){
             bufferedData.append(x[0]+",");
         }
         bufferedData.append("]\n");
         bufferedData.append("y = [");
-        for(T [] y:array){
+        for(double [] y:array){
             bufferedData.append(y[1]+",");
         }
         bufferedData.append("]\n");

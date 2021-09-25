@@ -16,15 +16,11 @@ public class Main extends SFrame {
         setPreferredSize(new Dimension(1000,800));
         setLocation(300,100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        addMenuBar();
+
         rootPane.setSize(1000,800);
         rootPane.setBackground(new Color(0,0,0));
         setContentPane(rootPane);
 
-        printThisSize();
-        printContentPaneSize();
-
-//        auto_size();
 
     }
     private void addMenuBar(){

@@ -1,7 +1,6 @@
 package datacollector;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class EasySplit {
     String split;

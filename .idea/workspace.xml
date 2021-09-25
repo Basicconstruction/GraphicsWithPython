@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd7b0292-420c-4082-8aaa-b35ace7827e7" name="Changes" comment="saved 9 24 10 46">
-      <change afterPath="$PROJECT_DIR$/src/datacollector/EasySplit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datacollector/SpaceFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datacollector/TextCollector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/datacollector/TextIterator.java" afterDir="false" />
+    <list default="true" id="bd7b0292-420c-4082-8aaa-b35ace7827e7" name="Changes" comment="saved 9 24 14 02">
+      <change afterPath="$PROJECT_DIR$/src/debug/test data.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tacklefile/DataRevolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tacklefile/LineDataRevolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tacklefile/Mode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/boostup/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boostup/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boostup/Terminal1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boostup/Terminal1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datacollector/EasySplit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datacollector/EasySplit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datacollector/TextIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datacollector/TextIterator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/saved/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/saved/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tacklefile/PythonFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tacklefile/PythonFileWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +136,8 @@
       <workItem from="1632364159026" duration="1300000" />
       <workItem from="1632384582346" duration="5278000" />
       <workItem from="1632447124756" duration="4841000" />
-      <workItem from="1632458573358" duration="4737000" />
+      <workItem from="1632458573358" duration="4888000" />
+      <workItem from="1632543400104" duration="2662000" />
     </task>
     <task id="LOCAL-00001" summary="save for julia as a supporter">
       <created>1632364002509</created>
@@ -157,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632451579025</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="saved 9 24 14 02">
+      <created>1632463386341</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1632463386341</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,58 +192,8 @@
     </ignored-roots>
     <MESSAGE value="save for julia as a supporter" />
     <MESSAGE value="saved 9 24 10 46" />
-    <option name="LAST_COMMIT_MESSAGE" value="saved 9 24 10 46" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>238</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>239</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>240</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>241</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>243</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>244</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>245</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>246</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/boostup/Main.java</url>
-          <line>248</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="saved 9 24 14 02" />
+    <option name="LAST_COMMIT_MESSAGE" value="saved 9 24 14 02" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

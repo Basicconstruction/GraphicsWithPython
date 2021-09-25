@@ -22,6 +22,9 @@ public class TextIterator {
             hasNext = true;
         }
     }
+    public ArrayList<String> getDataList(){
+        return this.data;
+    }
     public String getLine(){
         String s;
         if(it<data.size()-1){
