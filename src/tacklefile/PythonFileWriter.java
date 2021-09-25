@@ -33,21 +33,28 @@ public class PythonFileWriter {
         return file;
     }
     public void run(){
-        try{
-            Process pc = Runtime.getRuntime().exec(new String[]{"cmd","/c","python "+getFile().getAbsolutePath()},
-                    null,new File("D://GraphicsWithPython//"));
-            InputStreamReader isr = new InputStreamReader(pc.getInputStream());
-            BufferedReader bf = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String s;
-            while((s=bf.readLine())!=null){
-                sb.append(s).append("\n");
+        Thread thread = new Thread(new Runnable(){
+
+            @Override
+            public void run() {
+                try{
+                    Process pc = Runtime.getRuntime().exec(new String[]{"cmd","/c","python "+getFile().getAbsolutePath()},
+                            null,new File("D://GraphicsWithPython//"));
+                    InputStreamReader isr = new InputStreamReader(pc.getInputStream());
+                    BufferedReader bf = new BufferedReader(isr);
+                    StringBuilder sb = new StringBuilder();
+                    String s;
+                    while((s=bf.readLine())!=null){
+                        sb.append(s).append("\n");
+                    }
+                    System.out.println(sb);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("finished");
             }
-            System.out.println(sb);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("finished");
+        });
+        thread.start();
     }
     public StringBuilder lineGraphics(StringBuilder bufferedData,double[][] array){
         bufferedData.append("import matplotlib.pyplot as plt\n");
