@@ -1,5 +1,7 @@
 package tacklefile;
 
+import staticmode.Kind;
+
 import java.io.*;
 
 public class PythonFileWriter {
@@ -10,10 +12,11 @@ public class PythonFileWriter {
 
     }
     public PythonFileWriter(double[][] array, int kind){
-        validate();
+        this.tmp_file = validate();
         switch(kind){
             case Kind.Line->{
                 bufferedData = lineGraphics(this.bufferedData,array);
+                WriteCompliedCode(bufferedData);
             }
         }
 
@@ -37,7 +40,7 @@ public class PythonFileWriter {
     /**额外线程，避免调用的python进程阻塞主进程*/
     public void run(){
         PythonFileRunner pfr = new PythonFileRunner(this.tmp_file);
-//        Thread thread = new Thread(() -> {
+//        Thread staticmode.thread = new Thread(() -> {
 //            try{
 //                Process pc = Runtime.getRuntime().exec(new String[]{"cmd","/c","python "+getFile().getAbsolutePath()},
 //                        null,new File(this.tmp_file.getParent()));
@@ -54,7 +57,7 @@ public class PythonFileWriter {
 //            }
 //            System.out.println("finished");
 //        });
-//        thread.start();
+//        staticmode.thread.start();
     }
     public StringBuilder lineGraphics(StringBuilder bufferedData,double[][] array){
         bufferedData.append("import matplotlib.pyplot as plt\n");
@@ -99,8 +102,22 @@ public class PythonFileWriter {
                 }
             }
             return py_file;
+        }else{
+            File dirt = new File("C://GraphicsWithPython2//");
+            boolean dirt_exists = dirt.exists();
+            if(!dirt_exists){
+                dirt.mkdirs();
+            }
+            File py_file = new File("C://GraphicsWithPython2//temp.py");
+            if(!py_file.exists()){
+                try{
+                    py_file.createNewFile();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }
+            }
+            return py_file;
         }
-        return new File(tmp_filepath);
 
     }
 }

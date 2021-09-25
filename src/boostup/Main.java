@@ -1,6 +1,9 @@
 package boostup;
 
+import staticmode.Kind;
+import staticmode.Mode;
 import tacklefile.*;
+import staticmode.thread.ThreadPriorityHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -118,10 +121,14 @@ public class Main extends JFrame {
             if(!pythonArea.getText().equals("")){
                 PythonFileWriter.validate();
                 StringBuilder res = runCode();
+                terminal.setText("");
                 Thread thread = new Thread(() -> {
                     try {
-                        Thread.sleep(300);
-                        terminal.setText(res.toString());
+                        while(ThreadPriorityHelper.threadCode!=2){
+                            Thread.sleep(20);
+                            terminal.setText(res.toString());
+                        }
+                        ThreadPriorityHelper.threadCode = 0;
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
                     }
@@ -151,21 +158,29 @@ public class Main extends JFrame {
                     double[][] transferred = ldr.getData();
                     PythonFileWriter pfw = new PythonFileWriter(transferred,this.selectedKind);
                     pythonArea.setText("");
-                    Thread thread = new Thread(new Runnable(){
-
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(500);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            pythonArea.setText(pfw.bufferedData.toString());
+                    Thread thread = new Thread(() -> {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
+                        pythonArea.setText(pfw.bufferedData.toString());
+                        ThreadPriorityHelper.threadCode = 2;
                     });
                     thread.start();
                     if(mode==Mode.debug){
-                        pfw.run();
+                        Thread threadx = new Thread(() -> {
+                            try{
+                                while(ThreadPriorityHelper.threadCode!=2){
+                                    Thread.sleep(20);
+                                }
+                                System.out.println(pfw.bufferedData);
+                                pfw.run();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                        threadx.start();
                     }
                 }
                 case Kind.Column->{

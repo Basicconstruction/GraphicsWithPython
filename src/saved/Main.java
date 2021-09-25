@@ -4,7 +4,7 @@ import root.SFrame;
 
 import javax.swing.*;
 import java.awt.*;
-
+/** deprecated */
 public class Main extends SFrame {
     private JTextArea dataArea = new JTextArea();
     private JPanel rootPane = new JPanel(null);

@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bd7b0292-420c-4082-8aaa-b35ace7827e7" name="Changes" comment="save 9 25 18 14&#10;添加了直接运行python文件的逻辑">
-      <change afterPath="$PROJECT_DIR$/src/tacklefile/PythonFileRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/GraphicsWithPython_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/staticmode/thread/ThreadPriorityHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/boostup/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boostup/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boostup/Temporary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/debug/Temporary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/boostup/Terminal1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/debug/Terminal1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tacklefile/Kind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staticmode/Kind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tacklefile/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staticmode/Mode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tacklefile/PythonFileRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tacklefile/PythonFileRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tacklefile/PythonFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tacklefile/PythonFileWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +52,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="D:/FileData/A2" />
     <property name="dart.analysis.tool.window.visible" value="false" />
@@ -54,6 +62,9 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.notifications" />
     <property name="show.migrate.to.gradle.popup" value="false" />
@@ -73,7 +84,7 @@
       <module name="GraphicsWithPython" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="boostup.*" />
+          <option name="PATTERN" value="debug.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -82,11 +93,11 @@
       </method>
     </configuration>
     <configuration name="Temporary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="boostup.Temporary" />
+      <option name="MAIN_CLASS_NAME" value="debug.Temporary" />
       <module name="GraphicsWithPython" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="boostup.*" />
+          <option name="PATTERN" value="debug.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -95,11 +106,11 @@
       </method>
     </configuration>
     <configuration name="Terminal1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="boostup.Terminal1" />
+      <option name="MAIN_CLASS_NAME" value="debug.Terminal1" />
       <module name="GraphicsWithPython" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="boostup.*" />
+          <option name="PATTERN" value="debug.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -133,7 +144,9 @@
       <workItem from="1632458573358" duration="4888000" />
       <workItem from="1632543400104" duration="3037000" />
       <workItem from="1632546520469" duration="101000" />
-      <workItem from="1632559903075" duration="4976000" />
+      <workItem from="1632559903075" duration="5066000" />
+      <workItem from="1632565059517" duration="138000" />
+      <workItem from="1632573999317" duration="2379000" />
     </task>
     <task id="LOCAL-00001" summary="save for julia as a supporter">
       <created>1632364002509</created>
@@ -177,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632546353491</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="save 9 25 18 14&#10;添加了直接运行python文件的逻辑">
+      <created>1632564908143</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1632564908143</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

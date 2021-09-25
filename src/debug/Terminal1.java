@@ -1,4 +1,4 @@
-package boostup;
+package debug;
 
 import datacollector.EasySplit;
 import datacollector.SpaceFilter;

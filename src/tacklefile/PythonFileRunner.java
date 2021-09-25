@@ -1,7 +1,7 @@
 package tacklefile;
 
 import datacollector.TextCollector;
-import org.w3c.dom.Text;
+import staticmode.thread.ThreadPriorityHelper;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +26,7 @@ public class PythonFileRunner {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            ThreadPriorityHelper.threadCode = 1;
         });
         thread.start();
 
@@ -38,6 +39,7 @@ public class PythonFileRunner {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            ThreadPriorityHelper.threadCode = 1;
         });
         thread.start();
 
@@ -46,12 +48,16 @@ public class PythonFileRunner {
         StringBuilder sb = new StringBuilder();
         Thread thread = new Thread(()->{
             try {
-                Thread.sleep(100);
+                while(ThreadPriorityHelper.threadCode!=1){
+                    Thread.sleep(100);
+                }
+                TextCollector tc = new TextCollector("D://GraphicsWithPython//temp.txt");
+                sb.append(tc.getAsStringBuilder());
+                ThreadPriorityHelper.threadCode = 2;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            TextCollector tc = new TextCollector("D://GraphicsWithPython//temp.txt");
-            sb.append(tc.getAsStringBuilder());
+
         });
         thread.start();
         return sb;

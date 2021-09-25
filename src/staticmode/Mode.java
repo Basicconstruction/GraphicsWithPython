@@ -1,4 +1,4 @@
-package tacklefile;
+package staticmode;
 
 public class Mode {
     public static final int debug = 0,

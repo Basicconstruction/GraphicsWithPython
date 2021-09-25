@@ -1,4 +1,4 @@
-package boostup;
+package debug;
 
 import java.util.Scanner;
 

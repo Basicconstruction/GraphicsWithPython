@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="GraphicsWithPython:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GraphicsWithPython_jar</output-path>
+    <root id="archive" name="GraphicsWithPython.jar">
+      <element id="module-output" name="GraphicsWithPython" />
+    </root>
+  </artifact>
+</component>
