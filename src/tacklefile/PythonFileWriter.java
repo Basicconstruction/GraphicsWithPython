@@ -3,11 +3,14 @@ package tacklefile;
 import java.io.*;
 
 public class PythonFileWriter {
+    public static String tmp_filepath = "D://GraphicsWithPython//temp.py";
+    private File tmp_file;
     public StringBuilder bufferedData = new StringBuilder();
     public PythonFileWriter(){
 
     }
     public PythonFileWriter(double[][] array, int kind){
+        validate();
         switch(kind){
             case Kind.Line->{
                 bufferedData = lineGraphics(this.bufferedData,array);
@@ -16,13 +19,13 @@ public class PythonFileWriter {
 
     }
 
+
     public File getFile() {
-        return WriteCompliedCode(bufferedData);
+        return this.tmp_file;
     }
-    public File WriteCompliedCode(StringBuilder bufferedData){
-        File file = generate_python_file();
+    public void WriteCompliedCode(StringBuilder bufferedData){
         try{
-            FileWriter writer = new FileWriter(file);
+            FileWriter writer = new FileWriter(this.tmp_file);
             BufferedWriter bw = new BufferedWriter(writer);
             bw.write(bufferedData.toString());
             bw.close();
@@ -30,31 +33,28 @@ public class PythonFileWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return file;
     }
+    /**额外线程，避免调用的python进程阻塞主进程*/
     public void run(){
-        Thread thread = new Thread(new Runnable(){
-
-            @Override
-            public void run() {
-                try{
-                    Process pc = Runtime.getRuntime().exec(new String[]{"cmd","/c","python "+getFile().getAbsolutePath()},
-                            null,new File("D://GraphicsWithPython//"));
-                    InputStreamReader isr = new InputStreamReader(pc.getInputStream());
-                    BufferedReader bf = new BufferedReader(isr);
-                    StringBuilder sb = new StringBuilder();
-                    String s;
-                    while((s=bf.readLine())!=null){
-                        sb.append(s).append("\n");
-                    }
-                    System.out.println(sb);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("finished");
-            }
-        });
-        thread.start();
+        PythonFileRunner pfr = new PythonFileRunner(this.tmp_file);
+//        Thread thread = new Thread(() -> {
+//            try{
+//                Process pc = Runtime.getRuntime().exec(new String[]{"cmd","/c","python "+getFile().getAbsolutePath()},
+//                        null,new File(this.tmp_file.getParent()));
+//                InputStreamReader isr = new InputStreamReader(pc.getInputStream());
+//                BufferedReader bf = new BufferedReader(isr);
+//                StringBuilder sb = new StringBuilder();
+//                String s;
+//                while((s=bf.readLine())!=null){
+//                    sb.append(s).append("\n");
+//                }
+//                System.out.println(sb);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            System.out.println("finished");
+//        });
+//        thread.start();
     }
     public StringBuilder lineGraphics(StringBuilder bufferedData,double[][] array){
         bufferedData.append("import matplotlib.pyplot as plt\n");
@@ -73,17 +73,6 @@ public class PythonFileWriter {
         return bufferedData;
     }
 
-    public File generate_python_file(){
-        if (!new File("D://GraphicsWithPython").exists()){
-            new File("D://GraphicsWithPython").mkdirs();
-        }
-        File file = new File("D://GraphicsWithPython//"+"Graphics.py");
-        if(file.exists()){
-            file.delete();
-        }
-
-        return file;
-    }
     public String convertPath(String s){
         String[] list = s.split("\\\\");
         StringBuilder sb = new StringBuilder();
@@ -92,5 +81,26 @@ public class PythonFileWriter {
         }
         sb.append(list[list.length-1]);
         return sb.toString();
+    }
+    public static File validate(){
+        boolean d_disk_exists = new File("D://").exists();
+        if(d_disk_exists){
+            File dirt = new File("D://GraphicsWithPython2//");
+            boolean dirt_exists = dirt.exists();
+            if(!dirt_exists){
+                dirt.mkdirs();
+            }
+            File py_file = new File(tmp_filepath);
+            if(!py_file.exists()){
+                try{
+                    py_file.createNewFile();
+                }catch(IOException ex){
+                    ex.printStackTrace();
+                }
+            }
+            return py_file;
+        }
+        return new File(tmp_filepath);
+
     }
 }

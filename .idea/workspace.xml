@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd7b0292-420c-4082-8aaa-b35ace7827e7" name="Changes" comment="saved 9 24 14 02">
-      <change afterPath="$PROJECT_DIR$/src/debug/test data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tacklefile/DataRevolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tacklefile/LineDataRevolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tacklefile/Mode.java" afterDir="false" />
+    <list default="true" id="bd7b0292-420c-4082-8aaa-b35ace7827e7" name="Changes" comment="save 9 25 18 14&#10;添加了直接运行python文件的逻辑">
+      <change afterPath="$PROJECT_DIR$/src/tacklefile/PythonFileRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/boostup/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boostup/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datacollector/EasySplit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datacollector/EasySplit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datacollector/TextIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/datacollector/TextIterator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/saved/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/saved/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tacklefile/PythonFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tacklefile/PythonFileWriter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +131,9 @@
       <workItem from="1632384582346" duration="5278000" />
       <workItem from="1632447124756" duration="4841000" />
       <workItem from="1632458573358" duration="4888000" />
-      <workItem from="1632543400104" duration="2662000" />
+      <workItem from="1632543400104" duration="3037000" />
+      <workItem from="1632546520469" duration="101000" />
+      <workItem from="1632559903075" duration="4976000" />
     </task>
     <task id="LOCAL-00001" summary="save for julia as a supporter">
       <created>1632364002509</created>
@@ -167,7 +163,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632463386341</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="saved 9 25 13 01&#10;完善逻辑，目前line table可用，今后需要完善的逻辑&#10;代码保存，自定义代码逻辑，自定义代码执行&#10;属性页&#10;函数绘图">
+      <created>1632546195994</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1632546195994</updated>
+    </task>
+    <task id="LOCAL-00006" summary="saved 9 25 13 05&#10;使用多线程来解决python绘图堵塞进程。">
+      <created>1632546353491</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1632546353491</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +203,10 @@
     <MESSAGE value="save for julia as a supporter" />
     <MESSAGE value="saved 9 24 10 46" />
     <MESSAGE value="saved 9 24 14 02" />
-    <option name="LAST_COMMIT_MESSAGE" value="saved 9 24 14 02" />
+    <MESSAGE value="saved 9 25 13 01&#10;完善逻辑，目前line table可用，今后需要完善的逻辑&#10;代码保存，自定义代码逻辑，自定义代码执行&#10;属性页&#10;函数绘图" />
+    <MESSAGE value="saved 9 25 13 05&#10;使用多线程来解决python绘图堵塞进程。" />
+    <MESSAGE value="save 9 25 18 14&#10;添加了直接运行python文件的逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="save 9 25 18 14&#10;添加了直接运行python文件的逻辑" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

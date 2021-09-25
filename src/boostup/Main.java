@@ -1,23 +1,21 @@
 package boostup;
 
-import datacollector.TextIterator;
-import tacklefile.Kind;
-import tacklefile.LineDataRevolver;
-import tacklefile.Mode;
-import tacklefile.PythonFileWriter;
+import tacklefile.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.File;
 
 public class Main extends JFrame {
     private final JLabel dataLabel = new JLabel("temporary data");
     private final JTextArea dataArea = new JTextArea();
     private final JScrollPane dataPane = new JScrollPane(dataArea);
-    private final JLabel pythonLabel = new JLabel(".py");
+    private final JLabel pythonLabel = new JLabel(PythonFileWriter.tmp_filepath);
     private final JTextArea pythonArea = new JTextArea();
     private final JScrollPane pythonPane = new JScrollPane(pythonArea);
+    private final JButton pythonRun = new JButton("|>> run");
     private final JPanel rootPane = new JPanel(null);
 
     private final JLabel splitLabel = new JLabel("select split value",JLabel.CENTER);
@@ -34,10 +32,17 @@ public class Main extends JFrame {
     private final JButton compileButton = new JButton("compile");
     private final JButton debug = new JButton("debug");
 
+    private final JTextArea terminal = new JTextArea();
+    private final JScrollPane terminalPane = new JScrollPane(terminal);
+
     private final int width = 1400;
     private final int height = 800;
     private final int dataAreaWidth = 400;
     private final int dataLabelHeight = 30;
+    private final int pythonLabelWidth = 200;
+    private final int pythonRunWidth = 100;
+    private final int pythonRunHeight = 30;
+    private final int pythonRunX = 1270;
     private final int splitLabelWidth = 120;
     private final int splitLabelHeight = 40;
     private final int splitComboBoxWidth = 100;
@@ -55,6 +60,11 @@ public class Main extends JFrame {
     private final int compileX = 500;
     private final int compileY = 300;
 
+    private final int terminalX = 0;
+    private final int terminalY = 630;
+    private final int terminalWidth = 1400;
+    private final int terminalHeight = 170;
+
     public Main(){
         super();
         setTitle("Graphics and Analysis");
@@ -68,13 +78,16 @@ public class Main extends JFrame {
         dataLabel.setBounds(0,0,100,dataLabelHeight);
         dataPane.setBounds(0,30,dataAreaWidth,600);
         dataArea.setFont(new Font("微软雅黑",Font.PLAIN,18));
-        pythonLabel.setBounds(700,0,100,dataLabelHeight);
+        pythonLabel.setBounds(700,0,pythonLabelWidth,dataLabelHeight);
         pythonPane.setBounds(700,30,700,600);
+        pythonRun.setBounds(pythonRunX,0,pythonRunWidth,pythonRunHeight);
         pythonArea.setFont(new Font("微软雅黑",Font.PLAIN,18));
+
         getContentPane().add(dataLabel);
         getContentPane().add(dataPane);
         getContentPane().add(pythonLabel);
         getContentPane().add(pythonPane);
+        getContentPane().add(pythonRun);
 
         splitLabel.setBounds(dataAreaWidth,dataLabelHeight,splitLabelWidth,splitLabelHeight);
         splitComboBox.setBounds(dataAreaWidth+splitLabelWidth,dataLabelHeight,splitComboBoxWidth,splitLabelHeight);
@@ -92,10 +105,31 @@ public class Main extends JFrame {
         getContentPane().add(drawPreview);
         addItemListenerForSelectChartComboBox();
 
+        terminal.setFont(new Font("微软雅黑",Font.PLAIN,18));
+        terminal.setLineWrap(true);
+        terminalPane.setBounds(terminalX,terminalY,terminalWidth,terminalHeight);
+        getContentPane().add(terminalPane);
+
         debug.setBounds(debugX,debugY,100,40);
         compileButton.setBounds(compileX,compileY,100,40);
         getContentPane().add(debug);
         getContentPane().add(compileButton);
+        pythonRun.addActionListener(e->{
+            if(!pythonArea.getText().equals("")){
+                PythonFileWriter.validate();
+                StringBuilder res = runCode();
+                Thread thread = new Thread(() -> {
+                    try {
+                        Thread.sleep(300);
+                        terminal.setText(res.toString());
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+
+                });
+                thread.start();
+            }
+        });
         debug.addActionListener(e->{
             dataAreaDataRevolver(Mode.debug);
         });
@@ -103,6 +137,10 @@ public class Main extends JFrame {
             dataAreaDataRevolver(Mode.compile);
         });
 
+    }
+    private StringBuilder runCode(){
+        PythonFileRunner pfr = new PythonFileRunner(new File(PythonFileWriter.tmp_filepath),pythonArea.getText());
+        return pfr.getResult();
     }
     private void dataAreaDataRevolver(int mode){
         if(!dataArea.getText().equals("")){
