@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd7b0292-420c-4082-8aaa-b35ace7827e7" name="Changes" comment="save 9 25 18 14&#10;添加了直接运行python文件的逻辑">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/GraphicsWithPython_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/staticmode/thread/ThreadPriorityHelper.java" afterDir="false" />
+    <list default="true" id="bd7b0292-420c-4082-8aaa-b35ace7827e7" name="Changes" comment="save 9 25 21 29&#10;线程的优先级，使用危险的但是较为可靠，会因为项目的扩大而变得难以控制。">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boostup/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/boostup/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boostup/Temporary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/debug/Temporary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/boostup/Terminal1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/debug/Terminal1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tacklefile/Kind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staticmode/Kind.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tacklefile/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/staticmode/Mode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tacklefile/PythonFileRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tacklefile/PythonFileRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tacklefile/PythonFileWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tacklefile/PythonFileWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/debug/Terminal1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/debug/Terminal1.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +69,7 @@
       <recent name="datacollector" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BoostUp">
+  <component name="RunManager" selected="Application.Terminal1">
     <configuration name="BoostUp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="boostup.BoostUp" />
       <module name="GraphicsWithPython" />
@@ -120,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BoostUp" />
         <item itemvalue="Application.Terminal1" />
+        <item itemvalue="Application.BoostUp" />
         <item itemvalue="Application.Temporary" />
       </list>
     </recent_temporary>
@@ -146,7 +137,10 @@
       <workItem from="1632546520469" duration="101000" />
       <workItem from="1632559903075" duration="5066000" />
       <workItem from="1632565059517" duration="138000" />
-      <workItem from="1632573999317" duration="2379000" />
+      <workItem from="1632573999317" duration="4397000" />
+      <workItem from="1632622847398" duration="427000" />
+      <workItem from="1632624370220" duration="600000" />
+      <workItem from="1632667751019" duration="709000" />
     </task>
     <task id="LOCAL-00001" summary="save for julia as a supporter">
       <created>1632364002509</created>
@@ -197,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632564908143</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="save 9 25 21 29&#10;线程的优先级，使用危险的但是较为可靠，会因为项目的扩大而变得难以控制。">
+      <created>1632576615848</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1632576615848</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +227,8 @@
     <MESSAGE value="saved 9 25 13 01&#10;完善逻辑，目前line table可用，今后需要完善的逻辑&#10;代码保存，自定义代码逻辑，自定义代码执行&#10;属性页&#10;函数绘图" />
     <MESSAGE value="saved 9 25 13 05&#10;使用多线程来解决python绘图堵塞进程。" />
     <MESSAGE value="save 9 25 18 14&#10;添加了直接运行python文件的逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="save 9 25 18 14&#10;添加了直接运行python文件的逻辑" />
+    <MESSAGE value="save 9 25 21 29&#10;线程的优先级，使用危险的但是较为可靠，会因为项目的扩大而变得难以控制。" />
+    <option name="LAST_COMMIT_MESSAGE" value="save 9 25 21 29&#10;线程的优先级，使用危险的但是较为可靠，会因为项目的扩大而变得难以控制。" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
